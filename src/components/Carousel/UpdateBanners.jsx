@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Form, Col, Row } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -33,7 +33,7 @@ const UpdateBanners = ({ match }) => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(inputs);
+
   return (
     <>
       <Modal size="lg" show={show} centered>

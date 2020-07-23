@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const UsersStats = () => {
@@ -12,7 +13,7 @@ const UsersStats = () => {
   }, []);
 
   return (
-    <div className="Statistics-Blocks-Overall Users col-4">
+    <Link to="/admin/users" className="Statistics-Blocks-Overall Users col-4">
       <div className="Statistics-Blocks-Left col-8">
         <div className="Statistics-Blocks-Number">
           {number}
@@ -21,10 +22,10 @@ const UsersStats = () => {
           <p><strong>Utilsiateurs</strong>  inscrits sur Geekoss</p>
         </div>
       </div>
-        <div className="Statistics-Blocks-Fas col-4">
-          <span className="fas fa-users fa-4x" />
-        </div>
-    </div>
+      <div className="Statistics-Blocks-Fas col-4">
+        <span className="fas fa-users fa-4x" />
+      </div>
+    </Link>
   );
 };
 

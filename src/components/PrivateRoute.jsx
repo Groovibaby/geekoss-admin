@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             <section className="LoginBkg">
               <div className="LoginForm">
                 <div className="Nav-logo">
-                  <img src={geekoss} className="Img-logo" alt="Tricky" />
+                  <img src={geekoss} className="Img-logo" alt="Geekoss" />
                 </div>
                 <Spinner animation="border" role="status">
                   <span className="sr-only">Loading...</span>

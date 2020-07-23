@@ -12,7 +12,7 @@ const UserItem = (props) => {
   };
 
   const defaultImg =
-  'https://kuduconsulting.co.zm/wp-content/uploads/2017/11/default-portrait-image-generic-profile.jpg';
+  'https://api.drupal.org/sites/default/files/default-avatar.png';
 
   const deleteOffer = () => {
     axios
