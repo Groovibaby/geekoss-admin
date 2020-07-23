@@ -110,7 +110,7 @@ a:focus {
 
 a:focus > .brand-interface {
   background: #fff;
-  border-left: 3px solid #fff;
+  border-left: 5px solid #000;
   color: #000;
 }
 
