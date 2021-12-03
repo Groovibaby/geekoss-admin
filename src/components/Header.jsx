@@ -1,20 +1,22 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import '../App.css';
-import { authContext } from '../contexts/AuthContext';
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import "../App.css";
+import { authContext } from "../contexts/AuthContext";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Header = () => {
   const { setAuthData, auth } = useContext(authContext);
   const [Profile, setProfile] = useState({
-    firstname: '',
-    lastname: ''
+    firstname: "",
+    lastname: "",
   });
 
   useEffect(() => {
     axios({
-      method: 'post',
-      url: 'http://localhost:3000/api/auth',
+      method: "post",
+      url: `${BASE_URL}/api/auth`,
       headers: {
         Authorization: `Bearer ${auth.data}`,
       },

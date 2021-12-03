@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import AdminItem from './AdminItem';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import AdminItem from "./AdminItem";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const AdminsList = () => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/admins`)
+      .get(`${BASE_URL}/api/admins`)
       .then((response) => response.data)
       .then((data) => setOffers(data));
   }, []);

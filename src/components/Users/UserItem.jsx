@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const UserItem = (props) => {
   const [show, setShow] = useState(false);
@@ -12,15 +14,17 @@ const UserItem = (props) => {
   };
 
   const defaultImg =
-  'https://api.drupal.org/sites/default/files/default-avatar.png';
+    "https://api.drupal.org/sites/default/files/default-avatar.png";
 
   const deleteOffer = () => {
     axios
-      .delete(`http://localhost:3000/api/users/${id}`)
+      .delete(`${BASE_URL}/api/users/${id}`)
       .then(window.location.reload(false))
       .catch((err) => {
         // eslint-disable-next-line no-alert
-        alert(`Erreur lors de la suppression de l'utilisateur : ${err.message}`);
+        alert(
+          `Erreur lors de la suppression de l'utilisateur : ${err.message}`
+        );
       });
   };
 
@@ -28,7 +32,9 @@ const UserItem = (props) => {
     <>
       <Modal size="lg" show={show} onHide={() => handleClose()} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Supprimer l'utilisateur {firstname} {lastname}</Modal.Title>
+          <Modal.Title>
+            Supprimer l'utilisateur {firstname} {lastname}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Êtes-vous sûr de vouloir supprimer cet utilisateur ?

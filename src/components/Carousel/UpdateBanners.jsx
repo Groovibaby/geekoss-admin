@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Modal, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { Modal, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const UpdateBanners = ({ match }) => {
   const [inputs, setInputs] = useState({
-    url_img: '',
-    title: '',
-    description: '',
+    url_img: "",
+    title: "",
+    description: "",
   });
 
   const [show, handleShow] = useState(false);
@@ -16,14 +18,14 @@ const UpdateBanners = ({ match }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/banners/${id}`)
+      .get(`${BASE_URL}/api/banners/${id}`)
       .then((response) => response.data)
       .then((data) => setInputs(data[0]));
   }, [id]);
 
   const submitForm = (event) => {
     event.preventDefault();
-    const url = `http://localhost:3000/api/banners/${id}`;
+    const url = `${BASE_URL}/api/banners/${id}`;
     axios.put(url, inputs).then((res) => res.data);
   };
 
@@ -38,7 +40,9 @@ const UpdateBanners = ({ match }) => {
     <>
       <Modal size="lg" show={show} centered>
         <Modal.Header closeButton>
-          <Modal.Title>La bannière {inputs.title} a bien été modifié !</Modal.Title>
+          <Modal.Title>
+            La bannière {inputs.title} a bien été modifié !
+          </Modal.Title>
         </Modal.Header>
         <Modal.Footer>
           <Link to="/admin/carousels">
@@ -72,7 +76,11 @@ const UpdateBanners = ({ match }) => {
           </Form.Group>
           <Form.Group onChange={onChange}>
             <Form.Label>Description</Form.Label>
-            <Form.Control type="text" name="description" value={inputs.description} />
+            <Form.Control
+              type="text"
+              name="description"
+              value={inputs.description}
+            />
           </Form.Group>
           <button
             className="ButtonAction Action"

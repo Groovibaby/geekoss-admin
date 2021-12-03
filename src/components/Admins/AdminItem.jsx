@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const AdminItem = (props) => {
   const [show, setShow] = useState(false);
@@ -12,11 +14,11 @@ const AdminItem = (props) => {
   };
 
   const defaultImg =
-  'https://kuduconsulting.co.zm/wp-content/uploads/2017/11/default-portrait-image-generic-profile.jpg';
+    "https://kuduconsulting.co.zm/wp-content/uploads/2017/11/default-portrait-image-generic-profile.jpg";
 
   const deleteOffer = () => {
     axios
-      .delete(`http://localhost:3000/api/admins/${id}`)
+      .delete(`${BASE_URL}/api/admins/${id}`)
       .then(window.location.reload(false))
       .catch((err) => {
         // eslint-disable-next-line no-alert
@@ -28,7 +30,9 @@ const AdminItem = (props) => {
     <>
       <Modal size="lg" show={show} onHide={() => handleClose()} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Supprimer l'administrateur {firstname} {lastname}</Modal.Title>
+          <Modal.Title>
+            Supprimer l'administrateur {firstname} {lastname}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Êtes-vous sûr de vouloir supprimer cet administrateur ?

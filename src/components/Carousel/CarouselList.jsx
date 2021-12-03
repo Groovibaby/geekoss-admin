@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import CarouselItem from './CarouselItem';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import CarouselItem from "./CarouselItem";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const GeekossList = () => {
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/banners`)
+      .get(`${BASE_URL}/api/banners`)
       .then((response) => response.data)
       .then((data) => setBanners(data));
   }, []);

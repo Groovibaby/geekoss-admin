@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const OfferItem = (props) => {
   const [show, setShow] = useState(false);
@@ -13,7 +15,7 @@ const OfferItem = (props) => {
 
   const deleteOffer = () => {
     axios
-      .delete(`http://localhost:3000/api/offers/${id}`)
+      .delete(`${BASE_URL}/api/offers/${id}`)
       .then(window.location.reload(false))
       .catch((err) => {
         // eslint-disable-next-line no-alert

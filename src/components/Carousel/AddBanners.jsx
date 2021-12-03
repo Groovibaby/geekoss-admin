@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { Modal, Form, Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Modal, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const AddBanners = () => {
   const [inputs, setInputs] = useState({
-    url_img: '',
-    title: '',
-    description: '',
+    url_img: "",
+    title: "",
+    description: "",
   });
 
   const [show, handleShow] = useState(false);
 
   const submitForm = (event) => {
     event.preventDefault();
-    const url = `http://localhost:3000/api/banners/`;
+    const url = `${BASE_URL}/api/banners/`;
     axios.post(url, inputs).then((res) => res.data);
   };
 
@@ -29,7 +31,9 @@ const AddBanners = () => {
     <>
       <Modal size="lg" show={show} centered>
         <Modal.Header closeButton>
-          <Modal.Title>La bannière {inputs.title} a bien été ajoutée !</Modal.Title>
+          <Modal.Title>
+            La bannière {inputs.title} a bien été ajoutée !
+          </Modal.Title>
         </Modal.Header>
         <Modal.Footer>
           <Link to="/admin/carousels">

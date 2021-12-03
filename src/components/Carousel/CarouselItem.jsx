@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const CarouselItem = (props) => {
   const [show, setShow] = useState(false);
@@ -14,7 +16,7 @@ const CarouselItem = (props) => {
 
   const deleteOffer = () => {
     axios
-      .delete(`http://localhost:3000/api/banners/${id}`)
+      .delete(`${BASE_URL}/api/banners/${id}`)
       .then(window.location.reload(false))
       .catch((err) => {
         alert(`Erreur lors de la suppression de la bannière : ${err.message}`);

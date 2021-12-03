@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import UsersItem from './UserItem';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import UsersItem from "./UserItem";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const UsersList = () => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/users`)
+      .get(`${BASE_URL}/api/users`)
       .then((response) => response.data)
       .then((data) => setOffers(data));
   }, []);

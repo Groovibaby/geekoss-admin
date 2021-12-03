@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
-import React, { useReducer, useContext } from 'react';
-import { Form } from 'react-bootstrap';
-import axios from 'axios';
-import { authContext } from '../contexts/AuthContext';
-import geekoss from '../img/geekoss-logo-sm.png';
-import '../App.css';
+import React, { useReducer, useContext } from "react";
+import { Form } from "react-bootstrap";
+import axios from "axios";
+import { authContext } from "../contexts/AuthContext";
+import geekoss from "../img/geekoss-logo-sm.png";
+import "../App.css";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = (props) => {
   const { setAuthData } = useContext(authContext);
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     }
   );
 
@@ -23,11 +25,11 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = 'http://localhost:3000/api/auth/login';
+    const url = `${BASE_URL}/api/auth/login`;
     axios
       .post(url, userInput)
       .then((res) => setAuthData(res.data.token))
-      .then(() => props.history.push('/admin'))
+      .then(() => props.history.push("/admin"))
       .catch();
   };
 
@@ -60,10 +62,9 @@ const Login = (props) => {
             />
           </Form.Group>
           <div className="text-center">
-            <button
-              className="Action ButtonAction"
-              type="submit"
-            >Se connecter</button>
+            <button className="Action ButtonAction" type="submit">
+              Se connecter
+            </button>
           </div>
         </Form>
       </div>

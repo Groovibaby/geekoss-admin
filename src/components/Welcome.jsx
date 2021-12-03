@@ -1,23 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import Header from './Header';
-import '../App.css';
-import { authContext } from '../contexts/AuthContext';
-import AdminStats from './Statitics/AdminStats';
-import UsersStats from './Statitics/UsersStats';
-import OffersStats from './Statitics/OffersStats';
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import Header from "./Header";
+import "../App.css";
+import { authContext } from "../contexts/AuthContext";
+import AdminStats from "./Statitics/AdminStats";
+import UsersStats from "./Statitics/UsersStats";
+import OffersStats from "./Statitics/OffersStats";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Welcome = () => {
   const { auth } = useContext(authContext);
   const [Profile, setProfile] = useState({
-    firstname: '',
-    lastname: '',
+    firstname: "",
+    lastname: "",
   });
 
   useEffect(() => {
     axios({
-      method: 'post',
-      url: 'http://localhost:3000/api/auth',
+      method: "post",
+      url: `${BASE_URL}/api/auth`,
       headers: {
         Authorization: `Bearer ${auth.data}`,
       },
@@ -26,7 +28,7 @@ const Welcome = () => {
       .then((data) => setProfile(data.authData.admin[0]));
   }, [auth.data]);
 
-  console.log('Profile', Profile);
+  console.log("Profile", Profile);
   return (
     <>
       <Header />
