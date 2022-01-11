@@ -28,7 +28,6 @@ const Welcome = () => {
       .then((data) => setProfile(data.authData.admin[0]));
   }, [auth.data]);
 
-  console.log("Profile", Profile);
   return (
     <>
       <Header />
